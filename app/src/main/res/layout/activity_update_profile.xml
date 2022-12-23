@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center|left"
+    tools:context=".UpdateProfile">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="297dp"
+        android:background="#E1E1E1"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.546">
+
+        <LinearLayout
+            android:layout_width="102dp"
+            android:layout_height="244dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+
+                style="@style/edittxt"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/email"
+
+                style="@style/edittxt"
+                android:text="Email" />
+
+            <TextView
+                android:id="@+id/contact"
+
+                style="@style/edittxt"
+                android:text="Contact NO." />
+
+            <TextView
+                android:id="@+id/city"
+
+                style="@style/edittxt"
+                android:text="City" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="234dp"
+            android:layout_height="245dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/nameEdit"
+                style="@style/neweditDataStyle"
+                android:hint="Type here .." />
+
+            <EditText
+
+                android:id="@+id/emailEdit"
+                style="@style/neweditDataStyle"
+                android:hint="Type here .." />
+
+            <EditText
+                android:id="@+id/contactEdit"
+                style="@style/neweditDataStyle"
+                android:hint="Type here .." />
+
+            <EditText
+                android:id="@+id/cityEdit"
+                style="@style/neweditDataStyle"
+                android:hint="Type here .." />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="361dp"
+        android:layout_height="131dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06"
+        app:srcCompat="@drawable/update" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:gravity="center|left"
+        android:text="Upate Your Information .. "
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.255" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        android:backgroundTintMode="src_in"
+        android:text="save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.828" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:background="#9FE1E1E1"
+        android:gravity="center|left"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
+        android:text="Back to Profile Page.."
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

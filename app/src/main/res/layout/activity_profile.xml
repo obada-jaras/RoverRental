@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+    <TextView
+        android:id="@+id/updateInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:gravity="center|left"
+        android:text="Click To Update Your Information"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.438" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="359dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="100dp"
+        android:background="#E1E1E1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView11"
+                style="@style/imageStyle"
+                android:layout_width="36dp"
+                android:layout_height="33dp"
+                android:layout_margin="10dp"
+
+                app:srcCompat="@drawable/name" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                style="@style/imageStyle"
+                android:layout_width="39dp"
+                android:layout_height="29dp"
+                android:layout_margin="10dp"
+
+                app:srcCompat="@drawable/email1" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                style="@style/imageStyle"
+                android:layout_width="36dp"
+                android:layout_height="32dp"
+                android:layout_margin="10dp"
+
+                app:srcCompat="@drawable/call" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                style="@style/imageStyle"
+                android:layout_width="41dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/location" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                style="@style/imageStyle"
+                android:layout_width="42dp"
+                android:layout_height="39dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/birthdaycake" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="122dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameLable"
+                style="@style/txtStyle"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/emailLable"
+                style="@style/txtStyle"
+
+                android:text="Email" />
+
+            <TextView
+                android:id="@+id/phoneLable"
+                style="@style/txtStyle"
+                android:text="Phone number" />
+
+            <TextView
+                android:id="@+id/citiLable"
+                style="@style/txtStyle"
+                android:text="City" />
+
+            <TextView
+                android:id="@+id/BODlable"
+                style="@style/txtStyle"
+                android:text="Date of birth" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="205dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nametxt"
+                style="@style/txtStyle1"
+                android:hint="Dalia"
+                android:textColor="#4A4848" />
+
+            <TextView
+                android:id="@+id/emailtxt"
+                style="@style/txtStyle1"
+                android:hint="dalia@gmail.com"
+                android:shadowColor="#4A4848"
+                android:textColor="#4A4848" />
+
+            <TextView
+                android:id="@+id/phonetxt"
+                style="@style/txtStyle1"
+                android:hint="0592175722"
+                android:textColor="#4A4848" />
+
+            <TextView
+                android:id="@+id/citytxt"
+                style="@style/txtStyle1"
+                android:hint="Ramallah"
+                android:textColor="#4A4848" />
+
+            <TextView
+                android:id="@+id/bodtxt"
+                style="@style/txtStyle1"
+                android:hint="14 Jun 2000"
+                android:textColor="#4A4848" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="431dp"
+        android:layout_height="275dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/user" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="147dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305"
+        app:srcCompat="@drawable/pr" />
+
+    <Button
+        android:id="@+id/userActivity"
+        android:layout_width="202dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/primary"
+        android:text="Show Your Activity"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

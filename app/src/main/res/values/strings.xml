@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Rover Rental</string>
+    <string name="logo">Logo</string>
+    <string name="searchIcon">SearchIcon</string>
+    <string name="pick_up_location">Pick-up Location</string>
+    <string name="pick_up_date">Pick-up Date</string>
+    <string name="drop_off_date">Drop-off Date</string>
+    <string name="title_activity_available_cars">AvailableCars</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="pickupLocationError">You must enter pick-up location!</string>
+    <string name="pickupDateError">You must select pick-up date!</string>
+    <string name="dropoffDateError">You must select drop-off date!</string>
+    <string name="futureDatesError">You must select dates in future!</string>
+    <string name="dropDateAfterPickupError">Pick-up Date should be before Drop-off Date!</string>
+    <string name="search_for_available_cars">Search For Available Cars</string>
+
+
+    <string name="aboutUs1">Wherever you are, wherever you go,  we’ve got your ride.</string>
+    <string name="aboutUs2">Rover Rental Company (RRC) provides different cars with different features for rental with a direct connection with the owner</string>
+    <string name="contactus">How can we help you today? For any questions, comments or complaints...\n please contact us</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+</resources>
