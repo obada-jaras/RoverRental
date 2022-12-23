@@ -22,7 +22,7 @@ public class UserActivity extends AppCompatActivity {
                 ptxt = "Your Payment Activity :\n\n-Visa Card" ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getReference();
 
 
