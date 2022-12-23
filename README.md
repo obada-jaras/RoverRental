@@ -9,7 +9,7 @@
 
    The work on the application was divided between the project’s members as the following:
 
-## Marwa’s Part:
+## ** Marwa’s Part: **
 
 ### Splash Screen:
    This view is the opening of our application, it contains the logo of our company and our motto text, an animation is added to both of them, the logo has a top animation applied to it where it slides from the top of the screen to the middle, while the motto text has an immediate typing effect added to it. 
@@ -26,7 +26,7 @@
 ### Feedback and Rating Page:
    In this view, the user can add any thoughts and feedback they have regarding the application, also, they can rate their experience using the application. This view contains a rating bar of 5 stars for the user to rate the application, and each star contains a text describing the rating that is hidden and pops up when the rating is given, also, it contains a multi-line text box for the users to write any feedback they would like to give, the send feedback button is supposed to add the feedback given to the user’s activity which will be added in future work, also, this view will be added to every car view for the users to be able to add feedback regarding specific cars and renters. 
 
-## Obada’s Work:
+## ** Obada’s Work: **
 
 ### Registration Page:
    In this view, the user can create a new account to be able to use the application, the registration form contains 6 different fields to fill, first and last name, gender, email, phone number and password, the registration button creates the account and moves the user into the home page, in case the user misses and already has an account, the sign in button takes the user back to sign in using his existent account. 
@@ -42,7 +42,7 @@
    This view shows information about any car that the user presses, it contains an image of the car, a layout showing different information about the car, reviews and ratings available that are added by other users and a rent this car button that moves the user into the renting a car view.
    A specific feedback and rating view will be added into every car in the future so that users can add specific feedbacks.
 
-## Lian’s Work:
+## ** Lian’s Work: **
 
 ### Add Car Page:
   This view allows users to offer their cars for rental, different fields containing the car’s information such as the car brand, image upload,  model , fuel, seats and more data is to be filled for other users to check when wanting to rent the car. 
@@ -55,7 +55,7 @@
    This view contains the payment by visa view, it asks for the information needed (credit card information) for the user to pay online, it asks for the visa card number and other data required on the visa such as the expiration date, cvv number and mobile number. 
    This view will validate that all the needed information is correct and entered by handling the possible errors that might occur as the user enters the data.
 
-## Dalia’s Work:
+## ** Dalia’s Work: **
 
 ### About Us Page:
    This view gives the users an overview of our company, an explanation of who we are, our motto and what we do, this view also allows the users to access the contact us view.
