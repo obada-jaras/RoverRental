@@ -125,7 +125,7 @@
                 android:id="@+id/nametxt"
                 style="@style/txtStyle1"
                 android:hint="Dalia"
-                android:textColor="#4A4848" />
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/emailtxt"

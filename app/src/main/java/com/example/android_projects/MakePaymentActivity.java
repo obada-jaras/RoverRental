@@ -44,7 +44,6 @@ public class MakePaymentActivity extends AppCompatActivity {
                 if(visa.isChecked()==true){
                     Intent intent = new Intent(MakePaymentActivity.this , creditCardActivity.class);
                     MakePaymentActivity.this.startActivity(intent);
-                    finish();
                 }
                 else if (onSite.isChecked()==true){
                     Intent intent = new Intent(MakePaymentActivity.this , HomePage.class);
