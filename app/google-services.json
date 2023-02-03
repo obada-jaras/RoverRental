@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "704712406534",
+    "project_id": "roverrental-bzu",
+    "storage_bucket": "roverrental-bzu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704712406534:android:9b69b161d439f774de3587",
+        "android_client_info": {
+          "package_name": "com.example.android_projects"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704712406534-8gvdrcst6ts9j0vv088quanjqe66aera.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMg54nGt_JYXfCot-ZaxlQVjVlE0NNl3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704712406534-8gvdrcst6ts9j0vv088quanjqe66aera.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
