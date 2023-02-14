@@ -75,7 +75,7 @@ public class CarsAvailable extends AppCompatActivity {
                             String reservedPickupDate = bookingSnapshot.child("fromDate").getValue(String.class);
                             String reservedDropoffDate = bookingSnapshot.child("toDate").getValue(String.class);
 
-                            if (isAvailable(pickupDate, dropOffDate, reservedPickupDate, reservedDropoffDate)) {
+                            if (!isAvailable(pickupDate, dropOffDate, reservedPickupDate, reservedDropoffDate)) {
                                 isCarAvailable = false;
                                 break;
                             }
@@ -85,9 +85,9 @@ public class CarsAvailable extends AppCompatActivity {
                     if (isCarAvailable) {
                         String carId = carSnapshot.getKey();
                         String brand = carSnapshot.child("brand").getValue(String.class);
-                        String year = carSnapshot.child("modelYear").getValue(String.class);
+                        String year = carSnapshot.child("modelYear").getValue(Integer.class) + "";
                         String transmission = carSnapshot.child("transmission").getValue(String.class);
-                        String price = carSnapshot.child("price").getValue(Integer.class) + "";
+                        String price = carSnapshot.child("price").getValue(Integer.class) + "$/Day";
                         String seats = carSnapshot.child("seats").getValue(Integer.class) + "";
 
                         final AvailabeCar carCard = new AvailabeCar();
@@ -126,7 +126,7 @@ public class CarsAvailable extends AppCompatActivity {
 
 
     public boolean isAvailable(String wantToPickupDate, String wantToDropOffDate, String reservedPickupDate, String reservedDropoffDate) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-d");
         try {
             Date wantToPickup = dateFormat.parse(wantToPickupDate);
             Date wantToDropoff = dateFormat.parse(wantToDropOffDate);

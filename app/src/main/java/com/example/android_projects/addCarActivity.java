@@ -67,7 +67,7 @@ public class addCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
         // retrieve the user ID from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
         user_id = sharedPreferences.getString("userId", "");
 
         setUpView();

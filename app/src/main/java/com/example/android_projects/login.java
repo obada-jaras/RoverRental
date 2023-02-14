@@ -1,6 +1,8 @@
 package com.example.android_projects;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -66,6 +68,12 @@ public class login extends AppCompatActivity {
                                         && pw_txt.getText().toString().equals(password)) {
                                     Intent intent = new Intent(login.this, HomePage.class);
                                     intent.putExtra("userId", userId);
+
+                                    SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("userId", userId);
+                                    editor.apply();
+
                                     startActivity(intent);
                                     finish();
                                 }

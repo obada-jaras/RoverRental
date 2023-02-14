@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class MakePaymentActivity extends AppCompatActivity {
     TextView price_day ;
@@ -74,12 +76,14 @@ public class MakePaymentActivity extends AppCompatActivity {
 
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("dates", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         user_id = sharedPreferences.getString("userId", "");
+        Log.d("www", user_id);
 
         SharedPreferences sharedPreferencesDates = getSharedPreferences("dates", Context.MODE_PRIVATE);
-        pickUp = sharedPreferencesDates.getString("fromDate", null);
-        Dropoff = sharedPreferencesDates.getString("toDate", null);
+        pickUp = sharedPreferencesDates.getString("fromDate", "");
+        Dropoff = sharedPreferencesDates.getString("toDate", "");
+
 
         carId = getIntent().getStringExtra("carId");
 
@@ -120,7 +124,7 @@ public class MakePaymentActivity extends AppCompatActivity {
                     FirBaseAddBookings("onSite");
                     FirBaseAddTrans("OnSite");
                     FirBaseAddRentals();
-                    Intent intent = new Intent(MakePaymentActivity.this, UserActivity.class);
+                    Intent intent = new Intent(MakePaymentActivity.this, HomePage.class);
                     startActivity(intent);
                     finish();
                 }
@@ -158,10 +162,10 @@ public class MakePaymentActivity extends AppCompatActivity {
     }
 
     private void FirBaseAddBookings(String paymentMethod) {
-        mDatabase =rootNode.getReference("bookings");
+        mDatabase =rootNode.getReference("cars").child(carId);
         String key = mDatabase.push().getKey();
         // Create a HashMap to store the car properties
-
+        Log.d("ddddddd", user_id);
         Map<String, Object> car = new HashMap<>();
         car.put("userID", user_id);
         car.put("fromDate", pickUp);
@@ -169,7 +173,7 @@ public class MakePaymentActivity extends AppCompatActivity {
         car.put("carId", carId);
         car.put("PaymentMethod", paymentMethod);
         car.put("totalPrice",FinalPrice );
-        mDatabase.child(key).setValue(car);
+        mDatabase.child("bookings").child(key).setValue(car);
 
     }
 
@@ -247,25 +251,39 @@ public class MakePaymentActivity extends AppCompatActivity {
 
     }
 
-    long getRentDays(String pickUp , String dropOff){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date1 = null;
-        try {
-            date1 = formatter.parse(pickUp);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Date date2 = null;
-        try {
-            date2 = formatter.parse(dropOff);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        long diff = date2.getTime() - date1.getTime();
-        long diffDays = diff / (24 * 60 * 60 * 1000);
+//    long getRentDays(String pickUp , String dropOff){
+//        SimpleDateFormat formatter = new SimpleDateFormat("d/M/yyyy");
+//        Date date1 = null;
+//        try {
+//            date1 = formatter.parse(pickUp);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        Date date2 = null;
+//        try {
+//            date2 = formatter.parse(dropOff);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        long diff = date2.getTime() - date1.getTime();
+//        long diffDays = diff / (24 * 60 * 60 * 1000);
+//
+//    return diffDays;
+//    }
 
-    return diffDays;
+    public long getRentDays(String pickUp, String dropOff) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
+        try {
+            Date pickupDate = sdf.parse(pickUp);
+            Date dropoffDate = sdf.parse(dropOff);
+            long diff = dropoffDate.getTime() - pickupDate.getTime();
+            return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
+
 
 
 }

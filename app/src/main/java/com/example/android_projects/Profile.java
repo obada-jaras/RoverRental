@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,8 +35,9 @@ public class Profile extends AppCompatActivity {
         getReference();
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         user_id = sharedPreferences.getString("userId", "");
+        Log.d("rr", user_id);
 
         userActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +65,7 @@ public class Profile extends AppCompatActivity {
                 if(task.isSuccessful()){
                     if(task.getResult().exists()){
                         DataSnapshot dataSnapshot = task.getResult();
-                        String data1= dataSnapshot.child("users").child(user_id).child("firstName").getValue().toString().trim();
+                        String data1= dataSnapshot.child("users").child(user_id).child("firstName").getValue(String.class);
                         String data2= dataSnapshot.child("users").child(user_id).child("email").getValue().toString().trim();
                         String data3= dataSnapshot.child("users").child(user_id).child("phoneNumber").getValue().toString().trim();
                         String data4= dataSnapshot.child("users").child(user_id).child("gender").getValue().toString().trim();

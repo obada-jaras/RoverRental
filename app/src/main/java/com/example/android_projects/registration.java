@@ -146,7 +146,7 @@ public class registration extends AppCompatActivity {
         editor.putString("userID", uuid);
         editor.apply();
 
-        Intent intent = new Intent(this, HomePage.class);
+        Intent intent = new Intent(this, login.class);
         startActivity(intent);
         finish();
     }

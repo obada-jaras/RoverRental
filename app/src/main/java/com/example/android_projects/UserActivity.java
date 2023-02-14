@@ -1,6 +1,8 @@
 package com.example.android_projects;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -31,7 +35,8 @@ public class UserActivity extends AppCompatActivity {
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getReference();
 
-        user_id = getIntent().getStringExtra("userId");
+        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        user_id = sharedPreferences.getString("userId", "");
 
 
         feedtxt.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +49,7 @@ public class UserActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             if(task.getResult().exists()){
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = dataSnapshot.child("activities").child(user_id).child("feedbacks").getValue().toString().trim();
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("feedbacks").getValue());
                                 showtxt.setText(ftxt);
                                 feedView.setText(data);
                             }
@@ -86,7 +91,7 @@ public class UserActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             if(task.getResult().exists()){
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = dataSnapshot.child("activities").child(user_id).child("transactions").getValue().toString().trim();
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("transactions").getValue());
                                 showtxt.setText(ptxt);
                                 paymentView.setText(data);
                             }
@@ -112,7 +117,7 @@ public class UserActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             if(task.getResult().exists()){
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = dataSnapshot.child("activities").child(user_id).child("rentals").getValue().toString().trim();
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("rentals").getValue());
                                 showtxt.setText(rtxt);
                                 rentedView.setText(data);
                             }
@@ -138,7 +143,7 @@ public class UserActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             if(task.getResult().exists()){
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = dataSnapshot.child("activities").child(user_id).child("offers").getValue().toString().trim();
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("offers").getValue());
                                 showtxt.setText(oftxt);
                                 offersView.setText(data);
                             }
@@ -181,4 +186,17 @@ public class UserActivity extends AppCompatActivity {
         offerstxt = findViewById(R.id.offerstxt);
 
     }
+
+
+    public String getValuesAsString(HashMap<String, String> map) {
+        if (map == null)
+            return "";
+
+        StringBuilder sb = new StringBuilder();
+        for (String value : map.values()) {
+            sb.append(value).append("\n-----------\n");
+        }
+        return sb.toString();
+    }
+
 }

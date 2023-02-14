@@ -233,7 +233,7 @@ public class HomePage extends AppCompatActivity {
                         final HomeCarCard carCard = new HomeCarCard();
                         carCard.id = carSnapshot.getKey();
                         carCard.brand = carSnapshot.child("brand").getValue(String.class);
-                        carCard.price = carSnapshot.child("price").getValue(Integer.class) + "";
+                        carCard.price = carSnapshot.child("price").getValue(Integer.class) + "$/Day";
 
                         getCarImage(carCard.id, carCard);
                     }
