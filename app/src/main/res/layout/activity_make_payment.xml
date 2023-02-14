@@ -113,13 +113,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/totalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="204dp"
                 android:fontFamily="monospace"
-                android:text="Total Price: 809.4$"
+                android:text="Total Price: "
                 android:textColor="#121111"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="120dp"
-                android:text="Vehicle License Fees: 49.4$"
+                android:text="Vehicle License Fees: 0.65%"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
-                android:text="price per day: 190$"
+                android:text="price per day: "
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -178,20 +178,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="price during the booking period: 760$"
+                android:text="price during the booking period: "
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/PriceDayText" />
 
-            <TextView
-                android:id="@+id/totalPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="64dp"
-                android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView10" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

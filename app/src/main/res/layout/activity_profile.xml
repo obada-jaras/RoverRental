@@ -42,19 +42,20 @@
             <ImageView
                 android:id="@+id/imageView11"
                 style="@style/imageStyle"
-                android:layout_width="36dp"
-                android:layout_height="33dp"
-                android:layout_margin="10dp"
+                android:layout_width="48dp"
+                android:layout_height="43dp"
+                android:layout_margin="5dp"
 
                 app:srcCompat="@drawable/name" />
 
             <ImageView
                 android:id="@+id/imageView12"
                 style="@style/imageStyle"
-                android:layout_width="39dp"
-                android:layout_height="29dp"
+                android:layout_width="45dp"
+                android:layout_height="35dp"
                 android:layout_margin="10dp"
 
+                android:layout_marginTop="60dp"
                 app:srcCompat="@drawable/email1" />
 
             <ImageView
@@ -69,10 +70,10 @@
             <ImageView
                 android:id="@+id/imageView14"
                 style="@style/imageStyle"
-                android:layout_width="41dp"
-                android:layout_height="35dp"
+                android:layout_width="46dp"
+                android:layout_height="43dp"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/location" />
+                app:srcCompat="@drawable/icons8_lgbtq_30" />
 
             <ImageView
                 android:id="@+id/imageView15"
@@ -89,9 +90,17 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nameLable"
+                android:id="@+id/fnameLable"
                 style="@style/txtStyle"
-                android:text="Name" />
+                android:layout_height="35dp"
+                android:text="First name" />
+
+            <TextView
+                android:id="@+id/lnameLable"
+                style="@style/txtStyle"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:text="Last name" />
 
             <TextView
                 android:id="@+id/emailLable"
@@ -107,7 +116,7 @@
             <TextView
                 android:id="@+id/citiLable"
                 style="@style/txtStyle"
-                android:text="City" />
+                android:text="Gender" />
 
             <TextView
                 android:id="@+id/BODlable"
@@ -122,34 +131,37 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nametxt"
+                android:id="@+id/fnametxt"
                 style="@style/txtStyle1"
-                android:hint="Dalia"
+                android:layout_height="35dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/lnametxt"
+                style="@style/txtStyle1"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
                 android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/emailtxt"
                 style="@style/txtStyle1"
-                android:hint="dalia@gmail.com"
                 android:shadowColor="#4A4848"
                 android:textColor="#4A4848" />
 
             <TextView
                 android:id="@+id/phonetxt"
                 style="@style/txtStyle1"
-                android:hint="0592175722"
                 android:textColor="#4A4848" />
 
             <TextView
-                android:id="@+id/citytxt"
+                android:id="@+id/gendertxt"
                 style="@style/txtStyle1"
-                android:hint="Ramallah"
                 android:textColor="#4A4848" />
 
             <TextView
-                android:id="@+id/bodtxt"
+                android:id="@+id/dobtxt"
                 style="@style/txtStyle1"
-                android:hint="14 Jun 2000"
                 android:textColor="#4A4848" />
         </LinearLayout>
     </LinearLayout>

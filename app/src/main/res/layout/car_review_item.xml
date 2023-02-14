@@ -1,0 +1,77 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/feedbackUser_img"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/person"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/feedbackUsername_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="23dp"
+        android:layout_weight="1"
+        android:text=""
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/feedbackUser_img"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="star"
+        app:layout_constraintEnd_toStartOf="@+id/feedbackRating_txt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star" />
+
+    <TextView
+        android:id="@+id/feedbackRating_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:text="_/5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/comment_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingStart="1dp"
+        android:paddingEnd="1dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedbackUser_img" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:text="______________________________________________________________"
+        android:textAlignment="center"
+        android:textColor="#A6A6A6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comment_txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

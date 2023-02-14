@@ -1,48 +1,103 @@
 package com.example.android_projects;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class UserActivity extends AppCompatActivity {
 
     private Button back ;
-    private TextView rentedView, feedView , paymentView , paymentxt, feedtxt , rentedtxt;
+    private TextView rentedView, feedView , paymentView , paymentxt, feedtxt , rentedtxt , showtxt , offerstxt,offersView;
+    private DatabaseReference rootDatabaseref;
+    static String user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String rtxt = "Your Rented Activity :\n\n-Rent BMW", ftxt = "Your Feedback Activity :\n\n-Very Good System",
-                ptxt = "Your Payment Activity :\n\n-Visa Card" ;
+        String rtxt = "Your Rented Activity :", ftxt = "Your Feedback Activity :\n\n",
+                ptxt = "Your Payment Activity :\n\n" , oftxt = "Your Offers Activities" ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getReference();
 
+        user_id = getIntent().getStringExtra("userId");
+
 
         feedtxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                feedView.setText(ftxt);
+                rootDatabaseref = FirebaseDatabase.getInstance().getReference();
+                rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()){
+                            if(task.getResult().exists()){
+                                DataSnapshot dataSnapshot = task.getResult();
+                                String data = dataSnapshot.child("activities").child(user_id).child("feedbacks").getValue().toString().trim();
+                                showtxt.setText(ftxt);
+                                feedView.setText(data);
+                            }
+                        }
+                    }
+                });
+//                rootDatabaseref.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if(snapshot.exists())
+//                        {
+//
+//                            String data = snapshot.child("feedbacks").getKey().toString();
+//                            feedView.setText(data);
+//                        }
+//
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+               // feedView.setText(ftxt);
                 rentedView.setVisibility(View.INVISIBLE);
                 feedView.setVisibility(View.VISIBLE);
                 paymentView.setVisibility(View.INVISIBLE);
+                offersView.setVisibility(View.INVISIBLE);
+
             }
         });
 
         paymentxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                paymentView.setText(ptxt);
+                rootDatabaseref = FirebaseDatabase.getInstance().getReference();
+                rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()){
+                            if(task.getResult().exists()){
+                                DataSnapshot dataSnapshot = task.getResult();
+                                String data = dataSnapshot.child("activities").child(user_id).child("transactions").getValue().toString().trim();
+                                showtxt.setText(ptxt);
+                                paymentView.setText(data);
+                            }
+                        }
+                    }
+                });
+
                 rentedView.setVisibility(View.INVISIBLE);
                 feedView.setVisibility(View.INVISIBLE);
                 paymentView.setVisibility(View.VISIBLE);
+                offersView.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -50,10 +105,52 @@ public class UserActivity extends AppCompatActivity {
         rentedtxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rentedView.setText(rtxt);
+                rootDatabaseref = FirebaseDatabase.getInstance().getReference();
+                rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()){
+                            if(task.getResult().exists()){
+                                DataSnapshot dataSnapshot = task.getResult();
+                                String data = dataSnapshot.child("activities").child(user_id).child("rentals").getValue().toString().trim();
+                                showtxt.setText(rtxt);
+                                rentedView.setText(data);
+                            }
+                        }
+                    }
+                });
                 rentedView.setVisibility(View.VISIBLE);
                 feedView.setVisibility(View.INVISIBLE);
                 paymentView.setVisibility(View.INVISIBLE);
+                offersView.setVisibility(View.INVISIBLE);
+
+
+            }
+        });
+
+        offerstxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rootDatabaseref = FirebaseDatabase.getInstance().getReference();
+                rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()){
+                            if(task.getResult().exists()){
+                                DataSnapshot dataSnapshot = task.getResult();
+                                String data = dataSnapshot.child("activities").child(user_id).child("offers").getValue().toString().trim();
+                                showtxt.setText(oftxt);
+                                offersView.setText(data);
+                            }
+                        }
+                    }
+                });
+                rentedView.setVisibility(View.INVISIBLE);
+                feedView.setVisibility(View.INVISIBLE);
+                paymentView.setVisibility(View.INVISIBLE);
+                offersView.setVisibility(View.VISIBLE);
+
+
             }
         });
 
@@ -79,5 +176,9 @@ public class UserActivity extends AppCompatActivity {
         feedView = findViewById(R.id.feedView);
         paymentView = findViewById(R.id.paymentView);
         back = findViewById(R.id.back);
+        offersView = findViewById(R.id.offersView);
+        showtxt = findViewById(R.id.showtxt);
+        offerstxt = findViewById(R.id.offerstxt);
+
     }
 }

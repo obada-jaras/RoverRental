@@ -23,8 +23,8 @@
         app:layout_constraintVertical_bias="0.546">
 
         <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="244dp"
+            android:layout_width="105dp"
+            android:layout_height="297dp"
             android:layout_gravity="center"
             android:orientation="vertical">
 
@@ -32,54 +32,97 @@
                 android:id="@+id/name"
 
                 style="@style/edittxt"
-                android:text="Name" />
+                android:layout_height="43dp"
+                android:text="First Name " />
+
+            <TextView
+                android:id="@+id/lastnameLable"
+                style="@style/edittxt"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:text="Last Name " />
 
             <TextView
                 android:id="@+id/email"
 
                 style="@style/edittxt"
+                android:layout_height="45dp"
                 android:text="Email" />
 
             <TextView
                 android:id="@+id/contact"
 
                 style="@style/edittxt"
+                android:layout_height="47dp"
                 android:text="Contact NO." />
 
             <TextView
-                android:id="@+id/city"
+                android:id="@+id/gender"
 
                 style="@style/edittxt"
-                android:text="City" />
+                android:layout_height="46dp"
+                android:text="Gender" />
+
+            <TextView
+                android:id="@+id/doblablee"
+                style="@style/edittxt"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="Date of Birth" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="234dp"
-            android:layout_height="245dp"
+            android:layout_width="wrap_content"
+            android:layout_height="297dp"
             android:layout_gravity="center"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/nameEdit"
                 style="@style/neweditDataStyle"
+                android:layout_height="wrap_content"
                 android:hint="Type here .." />
+
+            <EditText
+                android:id="@+id/lastnametxt"
+                style="@style/neweditDataStyle"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type here .."
+                android:inputType="textPersonName"
+                android:textColorHint="#954F67"
+                android:textSize="18sp" />
 
             <EditText
 
                 android:id="@+id/emailEdit"
                 style="@style/neweditDataStyle"
+                android:layout_height="wrap_content"
                 android:hint="Type here .." />
 
             <EditText
                 android:id="@+id/contactEdit"
                 style="@style/neweditDataStyle"
+                android:layout_height="wrap_content"
                 android:hint="Type here .." />
 
             <EditText
-                android:id="@+id/cityEdit"
+                android:id="@+id/genderEdit"
                 style="@style/neweditDataStyle"
+                android:layout_height="wrap_content"
                 android:hint="Type here .." />
+
+            <EditText
+                android:id="@+id/dobtext"
+                style="@style/neweditDataStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:ems="10"
+                android:hint="Type here .."
+                android:inputType="textPersonName" />
         </LinearLayout>
     </LinearLayout>
 

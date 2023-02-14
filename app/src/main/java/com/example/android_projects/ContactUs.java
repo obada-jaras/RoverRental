@@ -1,9 +1,8 @@
 package com.example.android_projects;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ContactUs extends AppCompatActivity {
 

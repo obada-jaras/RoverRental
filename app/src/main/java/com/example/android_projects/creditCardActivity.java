@@ -1,7 +1,5 @@
 package com.example.android_projects;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +8,8 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.braintreepayments.cardform.view.CardForm;
 
@@ -50,16 +50,21 @@ public class creditCardActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
                             Toast.makeText(creditCardActivity.this, "Thank you for your trust", Toast.LENGTH_LONG).show();
-
-                            Intent intent = new Intent(creditCardActivity.this , HomePage.class);
-                            creditCardActivity.this.startActivity(intent);
+                            Intent intent = new Intent();
+                            intent.putExtra("complete",1 );
+                            setResult(RESULT_OK, intent);
                             finish();
+
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
+                            Intent intent = new Intent();
+                            intent.putExtra("complete",0 );
+                            setResult(RESULT_OK, intent);
+                            finish();
                         }
                     });
                     AlertDialog alertDialog = alertBuilder.create();

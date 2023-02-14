@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:id="@+id/layout1"
     tools:context=".addCarActivity">
 
     <ImageView
@@ -16,7 +17,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/car2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:id="@+id/cardView3"
         android:layout_width="392dp"
         android:layout_height="460dp"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="20dp"
         app:cardBackgroundColor="@color/gray"
         app:cardCornerRadius="10dp"
         app:cardElevation="30dp"
@@ -44,7 +44,7 @@
                 android:id="@+id/seatsText"
                 android:layout_width="190dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="12dp"
                 android:ems="10"
                 android:fontFamily="monospace"
                 android:inputType="textPersonName"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="monospace"
                 android:text="car seats number"
                 android:textColor="#101010"
@@ -70,10 +70,23 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="80dp"
                 android:fontFamily="monospace"
                 android:text="Car Brand"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/loacation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="monospace"
+                android:text="Location"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +97,7 @@
                 android:layout_width="171dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="monospace"
                 android:text="Car Year Model"
                 android:textColor="#000000"
@@ -165,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="36dp"
                 android:fontFamily="monospace"
                 android:text="Offered Price"
                 android:textColor="#000000"
@@ -173,16 +186,62 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
+
             <EditText
                 android:id="@+id/CarPrice"
                 android:layout_width="190dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="viewStart"
                 app:layout_constraintEnd_toEndOf="@+id/carFuel"
                 app:layout_constraintTop_toBottomOf="@+id/carFuel" />
+
+            <EditText
+                android:id="@+id/locationtxt"
+                android:layout_width="190dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textAlignment="viewStart"
+                app:layout_constraintEnd_toEndOf="@+id/carFuel"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/loacation"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/date"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="244dp"-->
+<!--                android:layout_marginTop="92dp"-->
+<!--                android:fontFamily="monospace"-->
+<!--                android:hint="PICK A DATE"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/text"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="12dp"-->
+<!--                android:layout_marginTop="92dp"-->
+<!--                android:fontFamily="monospace"-->
+<!--                android:text="pickup date starts:"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
+
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

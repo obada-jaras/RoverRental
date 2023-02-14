@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "704712406534",
+    "firebase_url": "https://roverrental-bzu-default-rtdb.firebaseio.com",
     "project_id": "roverrental-bzu",
     "storage_bucket": "roverrental-bzu.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "704712406534-19pct16cdf4uqj00nvv0m3ghhoajjg3m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android_projects",
+            "certificate_hash": "14555193a14609c49c5056f9c134b68ae57b0f40"
+          }
+        },
         {
           "client_id": "704712406534-8gvdrcst6ts9j0vv088quanjqe66aera.apps.googleusercontent.com",
           "client_type": 3

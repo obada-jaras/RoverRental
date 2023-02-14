@@ -1,8 +1,7 @@
 package com.example.android_projects;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +9,13 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 
 public class feedback extends AppCompatActivity {
 
@@ -65,6 +71,22 @@ public class feedback extends AppCompatActivity {
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences("carId", Context.MODE_PRIVATE);
+                String carID =  sharedPreferences.getString("carId", "");
+
+                SharedPreferences sharedPreferencesUser = getSharedPreferences("userId", Context.MODE_PRIVATE);
+                String userID = sharedPreferencesUser.getString("userId", "");
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference feedbackRef = database.getReference("feedbacks").child(carID);
+
+
+                String comment = review_txt.getText().toString();
+                int rating = (int) ratingBar.getRating();
+
+//                feedbackRef.push().setValue(userID, comment, rating);
+
                 if (review_txt.getText().toString().isEmpty()) {
                     Toast.makeText(feedback.this, "Please fill in the feedback text box", Toast.LENGTH_LONG).show();
                 } else {
@@ -75,9 +97,5 @@ public class feedback extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
 }

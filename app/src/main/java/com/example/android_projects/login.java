@@ -1,26 +1,30 @@
 package com.example.android_projects;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class login extends AppCompatActivity {
 
-    private EditText username_txt;
-    private EditText pw_txt;
-    private Button login_btn;
-    private Button register_btn;
+    EditText username_txt;
+    EditText pw_txt;
+    Button login_btn;
+    Button register_btn;
     boolean isAllChecked = false;
 
 
@@ -39,17 +43,40 @@ public class login extends AppCompatActivity {
         login_btn = findViewById(R.id.login_btn);
 
 
-
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 isAllChecked = checkUsername();
 
-                if(isAllChecked) {
-                    Intent intent = new Intent(login.this, HomePage.class);
-                    startActivity(intent);
-                    finish();
+                if (isAllChecked) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference userRef = database.getReference("users");
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String userId = dataSnapshot.getKey();
+
+                                String email = dataSnapshot.child("email").getValue(String.class);
+                                String password = dataSnapshot.child("password").getValue(String.class);
+
+                                if (username_txt.getText().toString().equals(email)
+                                        && pw_txt.getText().toString().equals(password)) {
+                                    Intent intent = new Intent(login.this, HomePage.class);
+                                    intent.putExtra("userId", userId);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+//                            Toast.makeText(login.this, "Account Doesn't Exist", Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(login.this, "Failed to Get Data", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });
@@ -65,19 +92,18 @@ public class login extends AppCompatActivity {
 
     }
 
-    boolean isEmail (EditText text){
+    boolean isEmail(EditText text) {
         CharSequence username_txt = text.getText().toString();
         return (!TextUtils.isEmpty(username_txt) && Patterns.EMAIL_ADDRESS.matcher(username_txt).matches());
     }
 
 
-    private boolean checkUsername () {
+    private boolean checkUsername() {
 
         if (username_txt.getText().toString().isEmpty()) {
             username_txt.setError("Username is Required");
             return false;
-        }
-        else if (isEmail(username_txt) == false){
+        } else if (isEmail(username_txt) == false) {
             username_txt.setError("Please Enter a Valid Username!");
             return false;
         }
@@ -89,7 +115,10 @@ public class login extends AppCompatActivity {
 
         return true;
     }
+
+
 }
+
 
 
 

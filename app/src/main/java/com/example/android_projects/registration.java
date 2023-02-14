@@ -1,28 +1,34 @@
 package com.example.android_projects;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 public class registration extends AppCompatActivity {
-
     EditText firstname_txt;
     EditText lastname_txt;
     EditText email_txt;
     EditText number_txt;
     EditText password;
+    String dob_txt;
+
     Spinner gender_spn;
     Button registration_btn;
     Button login_page_btn;
@@ -44,6 +50,8 @@ public class registration extends AppCompatActivity {
         password = findViewById(R.id.password);
         gender_spn = findViewById(R.id.gender_spn);
         number_txt = findViewById(R.id.number_txt);
+        dob_txt = "1/1/1900";
+
         registration_btn = findViewById(R.id.registration_btn);
         login_page_btn = findViewById(R.id.login_page_btn);
 
@@ -60,9 +68,7 @@ public class registration extends AppCompatActivity {
                 isAllChecked = checkInformation();
 
                 if(isAllChecked) {
-                    Intent intent = new Intent(registration.this, HomePage.class);
-                    startActivity(intent);
-                    finish();
+                    writeToDatabase();
                 }
 
             }
@@ -75,7 +81,6 @@ public class registration extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
 
@@ -101,7 +106,7 @@ public class registration extends AppCompatActivity {
             email_txt.setError("Email is Required");
             return false;
         }
-        else if (isEmail(email_txt) == false){
+        else if (!isEmail(email_txt)){
             email_txt.setError("Please Enter a Valid Username!");
             return false;
         }
@@ -119,5 +124,31 @@ public class registration extends AppCompatActivity {
         return true;
     }
 
+
+
+    private void writeToDatabase(){
+        String uuid = UUID.randomUUID().toString();
+        Map<String, Object> user = new HashMap<>();
+        user.put("firstName", firstname_txt.getText().toString());
+        user.put("lastName", lastname_txt.getText().toString());
+        user.put("dob", dob_txt);
+        user.put("gender", gender_spn.getSelectedItem().toString());
+        user.put("email", email_txt.getText().toString());
+        user.put("password", password.getText().toString());
+        user.put("phoneNumber", number_txt.getText().toString());
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users");
+        myRef.child(uuid).setValue(user);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userID", uuid);
+        editor.apply();
+
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+        finish();
+    }
 }
 

@@ -1,9 +1,11 @@
 package com.example.android_projects;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +14,26 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class HomePage extends AppCompatActivity {
+    private static final String TAG = "HomePage";
+
     private EditText edt_pickupLocation;
     private TextView tf_pickupDate, tf_dropoffDate, tf_warning;
     private Button btn_search;
@@ -26,11 +43,7 @@ public class HomePage extends AppCompatActivity {
     private LinearLayout menu_home;
     private LinearLayout menu_aboutus;
     private LinearLayout menu_account;
-
-
-    private LinearLayout card_car1;
-    private LinearLayout card_car2;
-
+    private RecyclerView recycler_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +67,10 @@ public class HomePage extends AppCompatActivity {
         menu_aboutus = findViewById(R.id.menu_aboutus);
         menu_account = findViewById(R.id.menu_account);
 
-        card_car1 = findViewById(R.id.card_car1);
-        card_car2 = findViewById(R.id.card_car2);
+        recycler_layout = findViewById(R.id.recycler_layout);
 
+
+        getNearsCars();
 
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -76,7 +90,6 @@ public class HomePage extends AppCompatActivity {
                     }
                 },year, month,day);
                 dialog.show();
-
             }
         });
 
@@ -93,7 +106,6 @@ public class HomePage extends AppCompatActivity {
                     }
                 },year, month,day);
                 dialog.show();
-
             }
         });
 
@@ -131,26 +143,19 @@ public class HomePage extends AppCompatActivity {
 
                     else {
                         Intent i = new Intent(getApplicationContext(), CarsAvailable.class);
+                        i.putExtra("pickupLocation", pickupLocation);
+                        i.putExtra("fromDate", pickupDate.toString());
+                        i.putExtra("toDate", dropoffDate.toString());
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("dates", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("fromDate", pickupDate.toString());
+                        editor.putString("toDate", dropoffDate.toString());
+                        editor.apply();
+
                         startActivity(i);
                     }
                 }
-            }
-        });
-
-
-        card_car1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), CarInformation.class);
-                startActivity(i);
-            }
-        });
-
-        card_car2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), CarInformation.class);
-                startActivity(i);
             }
         });
 
@@ -185,6 +190,73 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), Profile.class);
                 startActivity(i);
+            }
+        });
+    }
+
+
+
+
+    private void getNearsCars() {
+        recycler_layout.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recycler_layout.setLayoutManager(layoutManager);
+
+        ArrayList<HomeCarCard> listOfCars = new ArrayList<>();
+        HomeCarCardAdaptor carsAdapter = new HomeCarCardAdaptor(this, listOfCars);
+        recycler_layout.setAdapter(carsAdapter);
+
+
+        // Get a reference to the cars node in the Firebase Realtime Database
+        DatabaseReference carsReference = FirebaseDatabase.getInstance().getReference().child("cars");
+
+        // Set the myLocation variable
+        LocationHelper locationHelper = new LocationHelper(this);
+        String myLocation = locationHelper.getLocation();
+
+        // Read data from the Firebase Realtime Database
+        carsReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int count = 0;
+                for (DataSnapshot carSnapshot : dataSnapshot.getChildren()) {
+                    if (count >= 6) {
+                        break;
+                    }
+                    String carLocation = carSnapshot.child("lat_long").getValue(String.class);
+                    double distance = DistanceCalculator.distance(myLocation, carLocation);
+                    if (distance <= 10000000) {
+                        count++;
+
+                        // The car is within 10 km of the user's location
+                        final HomeCarCard carCard = new HomeCarCard();
+                        carCard.id = carSnapshot.getKey();
+                        carCard.brand = carSnapshot.child("brand").getValue(String.class);
+                        carCard.price = carSnapshot.child("price").getValue(Integer.class) + "";
+
+                        getCarImage(carCard.id, carCard);
+                    }
+                }
+            }
+
+            private void getCarImage(String carID, HomeCarCard carCard) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference();
+
+                StorageReference imageRef = storageRef.child("images/cars/" + carID + ".jpg");
+
+                imageRef.getBytes(5 * 1024 * 1024).addOnSuccessListener(bytes -> {
+                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    carCard.image = bmp;
+                    listOfCars.add(carCard);
+                    carsAdapter.notifyDataSetChanged();
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle the error
             }
         });
     }

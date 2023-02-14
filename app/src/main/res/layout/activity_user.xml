@@ -22,8 +22,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="389dp"
-        android:layout_height="281dp"
+        android:layout_width="382dp"
+        android:layout_height="208dp"
         android:background="#E1E1E1"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,31 +39,38 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="75dp"
-                android:layout_height="57dp"
+                android:layout_width="60dp"
+                android:layout_height="41dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/vote" />
 
             <ImageView
                 android:id="@+id/imageView10"
-                android:layout_width="73dp"
-                android:layout_height="50dp"
+                android:layout_width="66dp"
+                android:layout_height="39dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 app:srcCompat="@drawable/operation" />
 
             <ImageView
 
                 android:id="@+id/imageView16"
-                android:layout_width="71dp"
-                android:layout_height="45dp"
+                android:layout_width="65dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/key" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="wrap_content"
+                android:layout_height="41dp"
+                android:layout_gravity="center"
+
+                app:srcCompat="@drawable/icons8_offer_64" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,7 +82,7 @@
                 android:id="@+id/feedbacktxt"
                 style="@style/TXTSS"
                 android:layout_width="match_parent"
-                android:layout_height="98dp"
+                android:layout_height="48dp"
                 android:fontFamily="monospace"
                 android:text="Feedback"
                 android:textColor="@color/black"
@@ -86,7 +93,7 @@
                 android:id="@+id/paymenttxt"
                 style="@style/TXTSS"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="56dp"
                 android:fontFamily="monospace"
                 android:text="Payment Transactions"
                 android:textColor="@color/black"
@@ -97,15 +104,37 @@
                 android:id="@+id/rentedtxt"
                 style="@style/TXTSS"
                 android:layout_width="match_parent"
-                android:layout_height="94dp"
+                android:layout_height="58dp"
                 android:fontFamily="monospace"
                 android:text="Rental Records"
-                android:textColor="@color/black"
+                android:textAlignment="viewStart"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/offerstxt"
+                style="@style/TXTSS"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Offers"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/showtxt"
+        android:layout_width="216dp"
+        android:layout_height="51dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/feedView"
@@ -120,10 +149,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.368" />
 
     <TextView
         android:id="@+id/rentedView"
@@ -137,9 +166,10 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.681"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.359" />
 
     <TextView
         android:id="@+id/paymentView"
@@ -152,11 +182,22 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/feedView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.346" />
+
+    <TextView
+        android:id="@+id/offersView"
+        android:layout_width="397dp"
+        android:layout_height="231dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786" />
 
     <Button
         android:id="@+id/back"
