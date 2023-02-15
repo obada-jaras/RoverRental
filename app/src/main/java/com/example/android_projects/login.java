@@ -80,6 +80,7 @@ public class login extends AppCompatActivity {
                             }
 //                            Toast.makeText(login.this, "Account Doesn't Exist", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                             Toast.makeText(login.this, "Failed to Get Data", Toast.LENGTH_SHORT).show();

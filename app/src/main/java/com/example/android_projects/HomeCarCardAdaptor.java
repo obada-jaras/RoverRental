@@ -35,7 +35,7 @@ public class HomeCarCardAdaptor extends RecyclerView.Adapter<HomeCarCardAdaptor.
     public void onBindViewHolder(@NonNull HomeCarCardHolder holder, int position) {
         HomeCarCard card = list.get(position);
         holder.carName_txt.setText(card.getBrand());
-        holder.carPrice_txt.setText(card.getPrice() + "$/day");
+        holder.carPrice_txt.setText(card.getPrice() + "");
         holder.car_img.setImageBitmap(card.getImage());
         holder.bind(card);
     }

@@ -18,11 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class UpdateProfile extends AppCompatActivity {
 
-    private  EditText name,email,contact, genderEdit , lastnametxt,dob;
-    private Button save ;
-    private TextView back ;
-    private DatabaseReference rootDatabaseref;
     static String user_id;
+    private EditText name, email, contact, genderEdit, lastnametxt, dob;
+    private Button save;
+    private TextView back;
+    private DatabaseReference rootDatabaseref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,15 +39,15 @@ public class UpdateProfile extends AppCompatActivity {
         rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()){
-                    if(task.getResult().exists()){
+                if (task.isSuccessful()) {
+                    if (task.getResult().exists()) {
                         DataSnapshot dataSnapshot = task.getResult();
-                        String data1= dataSnapshot.child("users").child(user_id).child("firstName").getValue().toString().trim();
-                        String data2= dataSnapshot.child("users").child(user_id).child("email").getValue().toString().trim();
-                        String data3= dataSnapshot.child("users").child(user_id).child("phoneNumber").getValue().toString().trim();
-                        String data4= dataSnapshot.child("users").child(user_id).child("gender").getValue().toString().trim();
-                        String data5= dataSnapshot.child("users").child(user_id).child("lastName").getValue().toString().trim();
-                        String data6= dataSnapshot.child("users").child(user_id).child("dob").getValue().toString().trim();
+                        String data1 = dataSnapshot.child("users").child(user_id).child("firstName").getValue().toString().trim();
+                        String data2 = dataSnapshot.child("users").child(user_id).child("email").getValue().toString().trim();
+                        String data3 = dataSnapshot.child("users").child(user_id).child("phoneNumber").getValue().toString().trim();
+                        String data4 = dataSnapshot.child("users").child(user_id).child("gender").getValue().toString().trim();
+                        String data5 = dataSnapshot.child("users").child(user_id).child("lastName").getValue().toString().trim();
+                        String data6 = dataSnapshot.child("users").child(user_id).child("dob").getValue().toString().trim();
 
                         name.setText(data1);
                         email.setText(data2);
@@ -62,14 +63,12 @@ public class UpdateProfile extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UpdateProfile.this,Profile.class);
+                Intent intent = new Intent(UpdateProfile.this, Profile.class);
                 //Android to open menu activity ..
                 startActivity(intent);
                 finish();
             }
         });
-
-
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -113,8 +112,7 @@ public class UpdateProfile extends AppCompatActivity {
         });
     }
 
-    private void getReferance()
-    {
+    private void getReferance() {
         name = findViewById(R.id.nameEdit);
         email = findViewById(R.id.emailEdit);
         contact = findViewById(R.id.contactEdit);

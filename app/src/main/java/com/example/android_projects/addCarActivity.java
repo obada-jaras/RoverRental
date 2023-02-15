@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,32 +34,23 @@ import java.util.UUID;
 import java.util.stream.IntStream;
 
 public class addCarActivity extends AppCompatActivity {
-    Spinner brandSpin ;
-    Spinner yearSpin ;
-    Spinner fuelSpin ;
+    //// From Shared Prefrence
+    static String user_id;
+    Spinner brandSpin;
+    Spinner yearSpin;
+    Spinner fuelSpin;
     Spinner tranSpin;
     EditText carsseat;
     EditText price;
-    ImageView carimag ;
-    Button uploadimg ;
-    String uuid ;
-    Button AddCar ;
-    Uri imgUri ;
-    EditText location ;
-
-
+    ImageView carimag;
+    Button uploadimg;
+    String uuid;
+    Button AddCar;
+    Uri imgUri;
+    EditText location;
     private DatabaseReference mDatabase;
     private FirebaseDatabase rootNode;
-    private StorageReference storageReference ;
-
-
-
-
-    //// From Shared Prefrence
-    static String user_id;
-
-
-
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +63,15 @@ public class addCarActivity extends AppCompatActivity {
         setUpView();
 
         //uploaaad image for the car from the users gallery
-       uploadimg.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               chooseImg();
+        uploadimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseImg();
 
-           }
-       });
+            }
+        });
 
-       // add car to rent
+        // add car to rent
         AddCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,42 +99,42 @@ public class addCarActivity extends AppCompatActivity {
         tranSpin = findViewById(R.id.carTransmition);
         price = findViewById(R.id.CarPrice);
         carsseat = findViewById(R.id.seatsText);
-        carimag =findViewById(R.id.galleryImage);
+        carimag = findViewById(R.id.galleryImage);
         uploadimg = findViewById(R.id.upload);
         AddCar = findViewById(R.id.AddCar);
-        location =findViewById(R.id.locationtxt);
+        location = findViewById(R.id.locationtxt);
 
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String [] brands ={"BMW","Chevrolet", "Honda","Ford","Volkswagen"};
-        String [] fuel ={"Electric","Diesel", "Gasoline / petrol"};
-        String[] transmissionString ={"Manual","Automatic"};
+        String[] brands = {"BMW", "Chevrolet", "Honda", "Ford", "Volkswagen"};
+        String[] fuel = {"Electric", "Diesel", "Gasoline / petrol"};
+        String[] transmissionString = {"Manual", "Automatic"};
 
-        int[] range = IntStream.rangeClosed(2010,2022).toArray();
+        int[] range = IntStream.rangeClosed(2010, 2022).toArray();
         String[] yearArray = Arrays.stream(range)
                 .mapToObj(String::valueOf)
                 .toArray(String[]::new);
 
-        ArrayAdapter<String> brand = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,brands);
+        ArrayAdapter<String> brand = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, brands);
         brandSpin.setAdapter(brand);
 
-        ArrayAdapter<String> objYearArr = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,yearArray);
+        ArrayAdapter<String> objYearArr = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, yearArray);
         yearSpin.setAdapter(objYearArr);
 
-        ArrayAdapter<String> objFuelArr = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,fuel);
+        ArrayAdapter<String> objFuelArr = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, fuel);
         fuelSpin.setAdapter(objFuelArr);
 
-        ArrayAdapter<String> tran = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,transmissionString);
+        ArrayAdapter<String> tran = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, transmissionString);
         tranSpin.setAdapter(tran);
 
     }
 
     private void FireBaseCarUpload() {
         rootNode = FirebaseDatabase.getInstance();
-        mDatabase =rootNode.getReference("cars");
+        mDatabase = rootNode.getReference("cars");
 
         String brand = (String) brandSpin.getSelectedItem();
         String fuel = (String) fuelSpin.getSelectedItem();
@@ -166,12 +156,12 @@ public class addCarActivity extends AppCompatActivity {
         car.put("transmission", trans);
         car.put("location", locations);
         LocationHelper locationHelper = new LocationHelper(this);
-        String gps = locationHelper.getLocation();;
+        String gps = locationHelper.getLocation();
+        ;
 
         car.put("lat_long", gps);
 
         if (gps != null) {
-            Log.d("Location!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:" , gps);
             car.put("lat_long", gps);
         } else {
             car.put("lat_long", "null");
@@ -191,22 +181,21 @@ public class addCarActivity extends AppCompatActivity {
         location.setText("");
 
         //add it to offers
-        mDatabase =rootNode.getReference("activities").child(user_id).child("offers");
+        mDatabase = rootNode.getReference(user_id).child("activities").child("offers");
         String key = mDatabase.push().getKey();
 
-        String msg = "you offered  "+ brand +" for rent with a pick up location as  "+ locations +" with the price of " + String.valueOf(pricecar) +"  $ per day ";
+        String msg = "you offered " + brand + " for rent with a pick up location as  " + locations + " with the price of " + String.valueOf(pricecar) + "  $ per day ";
         mDatabase.child(key).setValue(msg);
 
     }
 
     private void uploadFirebaseimg() {
 
-        String fileName = uuid ;
-        storageReference=FirebaseStorage.getInstance().getReference("images/"+ "cars/" +fileName+"jpg");
+        String fileName = uuid;
+        storageReference = FirebaseStorage.getInstance().getReference("images/" + "cars/" + fileName + ".jpg");
         storageReference.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
 
 
             }
@@ -219,13 +208,13 @@ public class addCarActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,1);
+        startActivityForResult(intent, 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode ==1 && resultCode==RESULT_OK && data!= null && data.getData() != null){
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imgUri = data.getData();
             carimag.setImageURI(imgUri);
         }
@@ -241,11 +230,11 @@ public class addCarActivity extends AppCompatActivity {
             valid = false;
 
         }
-        if(carsseat.getText().toString().isEmpty()){
+        if (carsseat.getText().toString().isEmpty()) {
             carsseat.setError("Please fill this field");
             valid = false;
         }
-        if(location.getText().toString().isEmpty()){
+        if (location.getText().toString().isEmpty()) {
             location.setError("Please fill this field");
             valid = false;
         }
@@ -255,14 +244,13 @@ public class addCarActivity extends AppCompatActivity {
         if (drawable == null) {
             valid = false;
             View view = findViewById(R.id.layout1);
-            Snackbar snackbar = Snackbar.make( view, "please upload the cars picture",
+            Snackbar snackbar = Snackbar.make(view, "please upload the cars picture",
                     Snackbar.LENGTH_LONG);
             View snackbarView = snackbar.getView();
             snackbarView.setBackgroundColor(getResources().getColor(R.color.error));
             snackbar.show();
 
         }
-
 
         return valid;
 

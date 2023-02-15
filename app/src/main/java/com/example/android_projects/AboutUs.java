@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AboutUs extends AppCompatActivity {
 
 
-    private ImageView imageView1,imageView2,imageView3;
+    private ImageView imageView1, imageView2, imageView3;
     private Button btn_contactUs;
 
     @Override
@@ -47,22 +47,19 @@ public class AboutUs extends AppCompatActivity {
 //        },10000);
 //
 //
-            btn_contactUs = findViewById(R.id.btn_contactUs);
+        btn_contactUs = findViewById(R.id.btn_contactUs);
 
-            btn_contactUs.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(getApplicationContext(), ContactUs.class);
-                    startActivity(i);
-                }
-            });
+        btn_contactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ContactUs.class);
+                startActivity(i);
+            }
+        });
     }
 
 
-
-
-    private void getReferance()
-    {
+    private void getReferance() {
 
 
     }

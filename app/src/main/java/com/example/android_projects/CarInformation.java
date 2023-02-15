@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -122,7 +121,6 @@ public class CarInformation extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
                 Toast.makeText(CarInformation.this, "Failed to read data from the database.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -139,7 +137,8 @@ public class CarInformation extends AppCompatActivity {
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference carReviewsRef = database.getReference("feedbacks").child(carID);
+        DatabaseReference carReviewsRef = database.getReference("cars").child(carID).child("feedbacks");
+
 
         carReviewsRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -149,6 +148,7 @@ public class CarInformation extends AppCompatActivity {
 
                     final Review review = new Review();
                     review.rating = singleReviewSnapshot.child("rating").getValue(Integer.class);
+
                     review.comment = singleReviewSnapshot.child("comment").getValue(String.class);
 
                     getUsernameAndPhoto(userId, review);
@@ -162,6 +162,7 @@ public class CarInformation extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot userSnapshot) {
                         String firstName = userSnapshot.child("firstName").getValue(String.class);
+
                         String lastName = userSnapshot.child("lastName").getValue(String.class);
 
                         review.userName = firstName + " " + lastName;

@@ -84,11 +84,11 @@ public class HomePage extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        month = month+1;
-                        String date = dayOfMonth+"/"+month+"/"+year;
+                        month = month + 1;
+                        String date = dayOfMonth + "/" + month + "/" + year;
                         tf_pickupDate.setText(date);
                     }
-                },year, month,day);
+                }, year, month, day);
                 dialog.show();
             }
         });
@@ -100,11 +100,11 @@ public class HomePage extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        month = month+1;
-                        String date = dayOfMonth+"/"+month+"/"+year;
+                        month = month + 1;
+                        String date = dayOfMonth + "/" + month + "/" + year;
                         tf_dropoffDate.setText(date);
                     }
-                },year, month,day);
+                }, year, month, day);
                 dialog.show();
             }
         });
@@ -115,17 +115,11 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View view) {
                 if (edt_pickupLocation.getText().toString().isEmpty()) {
                     tf_warning.setText(R.string.pickupLocationError);
-                }
-
-                else if (tf_pickupDate.getText().toString().isEmpty()) {
+                } else if (tf_pickupDate.getText().toString().isEmpty()) {
                     tf_warning.setText(R.string.pickupDateError);
-                }
-
-                else if (tf_dropoffDate.getText().toString().isEmpty()) {
+                } else if (tf_dropoffDate.getText().toString().isEmpty()) {
                     tf_warning.setText(R.string.dropoffDateError);
-                }
-
-                else {
+                } else {
                     String pickupLocation = edt_pickupLocation.getText().toString();
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
@@ -135,13 +129,9 @@ public class HomePage extends AppCompatActivity {
 
                     if (pickupDate.isBefore(LocalDate.now())) {
                         tf_warning.setText(R.string.futureDatesError);
-                    }
-
-                    else if (pickupDate.isAfter(dropoffDate)) {
+                    } else if (pickupDate.isAfter(dropoffDate)) {
                         tf_warning.setText(R.string.dropDateAfterPickupError);
-                    }
-
-                    else {
+                    } else {
                         Intent i = new Intent(getApplicationContext(), CarsAvailable.class);
                         i.putExtra("pickupLocation", pickupLocation);
                         i.putExtra("fromDate", pickupDate.toString());
@@ -193,8 +183,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
-
-
 
 
     private void getNearsCars() {

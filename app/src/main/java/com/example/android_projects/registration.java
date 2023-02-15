@@ -55,7 +55,7 @@ public class registration extends AppCompatActivity {
         registration_btn = findViewById(R.id.registration_btn);
         login_page_btn = findViewById(R.id.login_page_btn);
 
-        String[] genderChoice = {"Select Your Gender","Female","Male"};
+        String[] genderChoice = {"Select Your Gender", "Female", "Male"};
 
         ArrayAdapter<String> gender = new ArrayAdapter<>(this, R.layout.spinner_item, genderChoice);
         gender_spn.setAdapter(gender);
@@ -67,7 +67,7 @@ public class registration extends AppCompatActivity {
 
                 isAllChecked = checkInformation();
 
-                if(isAllChecked) {
+                if (isAllChecked) {
                     writeToDatabase();
                 }
 
@@ -84,7 +84,7 @@ public class registration extends AppCompatActivity {
     }
 
 
-    boolean isEmail (EditText text){
+    boolean isEmail(EditText text) {
         CharSequence email_txt = text.getText().toString();
         return (!TextUtils.isEmpty(email_txt) && Patterns.EMAIL_ADDRESS.matcher(email_txt).matches());
     }
@@ -105,8 +105,7 @@ public class registration extends AppCompatActivity {
         if (email_txt.getText().toString().isEmpty()) {
             email_txt.setError("Email is Required");
             return false;
-        }
-        else if (!isEmail(email_txt)){
+        } else if (!isEmail(email_txt)) {
             email_txt.setError("Please Enter a Valid Username!");
             return false;
         }
@@ -125,8 +124,7 @@ public class registration extends AppCompatActivity {
     }
 
 
-
-    private void writeToDatabase(){
+    private void writeToDatabase() {
         String uuid = UUID.randomUUID().toString();
         Map<String, Object> user = new HashMap<>();
         user.put("firstName", firstname_txt.getText().toString());

@@ -52,7 +52,6 @@ public class CarsAvailable extends AppCompatActivity {
     }
 
 
-
     private void getAvailableCarsFromDb() {
         recycler_layout.setHasFixedSize(true);
         recycler_layout.setLayoutManager(new LinearLayoutManager(this));
@@ -122,7 +121,6 @@ public class CarsAvailable extends AppCompatActivity {
         });
 
     }
-
 
 
     public boolean isAvailable(String wantToPickupDate, String wantToDropOffDate, String reservedPickupDate, String reservedDropoffDate) {

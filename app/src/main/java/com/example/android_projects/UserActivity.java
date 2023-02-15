@@ -21,15 +21,15 @@ import java.util.HashMap;
 
 public class UserActivity extends AppCompatActivity {
 
-    private Button back ;
-    private TextView rentedView, feedView , paymentView , paymentxt, feedtxt , rentedtxt , showtxt , offerstxt,offersView;
-    private DatabaseReference rootDatabaseref;
     static String user_id;
+    private Button back;
+    private TextView rentedView, feedView, paymentView, paymentxt, feedtxt, rentedtxt, showtxt, offerstxt, offersView;
+    private DatabaseReference rootDatabaseref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String rtxt = "Your Rented Activity :", ftxt = "Your Feedback Activity :\n\n",
-                ptxt = "Your Payment Activity :\n\n" , oftxt = "Your Offers Activities" ;
+                ptxt = "Your Payment Activity :\n\n", oftxt = "Your Offers Activities";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -46,10 +46,10 @@ public class UserActivity extends AppCompatActivity {
                 rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if(task.isSuccessful()){
-                            if(task.getResult().exists()){
+                        if (task.isSuccessful()) {
+                            if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("feedbacks").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("feedbacks").getValue());
                                 showtxt.setText(ftxt);
                                 feedView.setText(data);
                             }
@@ -72,7 +72,7 @@ public class UserActivity extends AppCompatActivity {
 //
 //                    }
 //                });
-               // feedView.setText(ftxt);
+                // feedView.setText(ftxt);
                 rentedView.setVisibility(View.INVISIBLE);
                 feedView.setVisibility(View.VISIBLE);
                 paymentView.setVisibility(View.INVISIBLE);
@@ -88,10 +88,10 @@ public class UserActivity extends AppCompatActivity {
                 rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if(task.isSuccessful()){
-                            if(task.getResult().exists()){
+                        if (task.isSuccessful()) {
+                            if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("transactions").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("transactions").getValue());
                                 showtxt.setText(ptxt);
                                 paymentView.setText(data);
                             }
@@ -114,10 +114,10 @@ public class UserActivity extends AppCompatActivity {
                 rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if(task.isSuccessful()){
-                            if(task.getResult().exists()){
+                        if (task.isSuccessful()) {
+                            if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("rentals").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("rentals").getValue());
                                 showtxt.setText(rtxt);
                                 rentedView.setText(data);
                             }
@@ -140,10 +140,10 @@ public class UserActivity extends AppCompatActivity {
                 rootDatabaseref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if(task.isSuccessful()){
-                            if(task.getResult().exists()){
+                        if (task.isSuccessful()) {
+                            if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("activities").child(user_id).child("offers").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("offers").getValue());
                                 showtxt.setText(oftxt);
                                 offersView.setText(data);
                             }
@@ -162,7 +162,7 @@ public class UserActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserActivity.this,Profile.class);
+                Intent intent = new Intent(UserActivity.this, Profile.class);
                 //Android to open menu activity ..
                 startActivity(intent);
                 finish();
@@ -172,8 +172,7 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    private void  getReference()
-    {
+    private void getReference() {
         rentedtxt = findViewById(R.id.rentedtxt);
         paymentxt = findViewById(R.id.paymenttxt);
         feedtxt = findViewById(R.id.feedbacktxt);
