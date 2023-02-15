@@ -49,7 +49,7 @@ public class UserActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("feedbacks").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("users").child(user_id).child("activities").child("feedbacks").getValue());
                                 showtxt.setText(ftxt);
                                 feedView.setText(data);
                             }
@@ -91,7 +91,7 @@ public class UserActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("transactions").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("users").child(user_id).child("activities").child("transactions").getValue());
                                 showtxt.setText(ptxt);
                                 paymentView.setText(data);
                             }
@@ -117,7 +117,7 @@ public class UserActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("rentals").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("users").child(user_id).child("activities").child("rentals").getValue());
                                 showtxt.setText(rtxt);
                                 rentedView.setText(data);
                             }
@@ -143,7 +143,7 @@ public class UserActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (task.getResult().exists()) {
                                 DataSnapshot dataSnapshot = task.getResult();
-                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child(user_id).child("activities").child("offers").getValue());
+                                String data = getValuesAsString((HashMap<String, String>) dataSnapshot.child("users").child(user_id).child("activities").child("offers").getValue());
                                 showtxt.setText(oftxt);
                                 offersView.setText(data);
                             }
