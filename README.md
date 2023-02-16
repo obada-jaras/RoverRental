@@ -83,7 +83,7 @@ The Firebase Storage is used to save users and cars photos. User images are save
 
 For testing purposes, you can use the following login credentials:
 
-Email: test@gmail.com
+Email: test@gmail.com   
 Password: 123456ee
 
 <br>
