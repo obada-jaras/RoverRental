@@ -6,6 +6,8 @@ This application will allow users to search for cars for rental based on specifi
 
 In our application, as it provides an environment for freelancers, users will be able to add cars of their own for rental, they add several information required about the car, and then it is shared on the application’s homepage for other users to view it.
 
+To view the app you can download [app-debug.apk](https://github.com/obada-jaras/RoverRental/blob/master/app-debug.apk) and install it to your Android device.
+
 <br>
 <hr>
 <br>
